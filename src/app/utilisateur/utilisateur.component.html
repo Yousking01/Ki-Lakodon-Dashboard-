@@ -1,0 +1,153 @@
+<div class="container-fluid" style="overflow: hidden; background-color: rgba(255, 235, 205, 0.547);">
+    <div class="row flex-nowrap">
+        <div id="sidebar" class="col-auto sidebar  collapse collapse-horizontal show" *ngIf="menuBureau"
+            style="height: 100vh;">
+            <app-menu></app-menu>
+            <!-- </div> -->
+        </div>
+        <main class="col " style=" height: 100vh ; overflow: scroll; overflow-x: hidden;">
+            <nav class=" bg-danger  navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+                <h1 style="width: 20px;"></h1>
+                <a href="#" class="sidebar-toggler flex-shrink-0" data-bs-toggle="collapse" data-bs-target="#sidebar"
+                    aria-expanded="false" (click)="afficheMenuMobile()" aria-controls="collapseWidthExample">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <div class="d-none d-md-flex ms-4">
+                    <input type="text" [(ngModel)]="term"
+                        class="form-control border-0 border-2 border-start border-end border-alert" type="search"
+                        placeholder="rechercher">
+                </div>
+                <div class="d-flex justify-content-end  w-100">
+                    <app-navbar></app-navbar>
+                </div>
+            </nav>
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4 py-2">
+                    <div class="col-sm-12 ">
+                        <div class="bg-light  rounded p-4">
+                            <div class="row">
+                                <div class="col-md-8 ">
+                                    <h3>La liste complètes des utilisateurs</h3>
+                                </div>
+                                <!-- <div class="col-md-2"></div> -->
+                                <div class="col-md-4">
+
+                                    <input type="text" [(ngModel)]="term"
+                                        class="form-control border-0 border-2 border-start border-end border-alert"
+                                        type="search" placeholder="rechercher">
+
+                                </div>
+                            </div>
+                            <div class="chart-container py-2">
+                                <!-- <div class="header_fixed py-2 ">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No.</th>
+                                                <th scope="col">Photo</th>
+                                                <th scope="col">Nom</th>
+                                                <th scope="col">Prenom</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Telephone</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody  class="text-dark">
+                                            <tr
+                                                *ngFor="let users of user |filter:term | paginate: { itemsPerPage: 8, currentPage: p },  let i = index ">
+
+                                                <td>
+                                                    <p class="text-body mb-0">{{i+1}}</p>
+                                                </td>
+                                                <td><img src="{{users.profile}}" alt=""></td>
+                                                <td>{{users.nom}}</td>
+                                                <td>{{users.prenom}}</td>
+                                                <td>{{users.email}}</td>
+                                                <td>91228829</td>
+                                                <td *ngIf="users.roles[0].name=='ROLE_USER'">Utilisateur</td>
+                                                <td><button>Banir</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div> -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="">
+                                            <div class="table-responsive">
+                                                <table
+                                                    class="table project-list-table table-nowrap align-middle table-borderless">
+                                                    <thead>
+                                                        <!-- ----------------------- Tittre tableau en haut---------------------------
+                                                    --------------------------------------------------- -->
+                                                        <tr class=" text-light" style="background-color: #695CFE;">
+                                                            <th scope="col">N°.</th>
+                                                            <th scope="col">Photo</th>
+                                                            <th scope="col">Nom</th>
+                                                            <!-- <th scope="col">Prenom</th> -->
+                                                            <th scope="col">Email</th>
+                                                            <!-- <th scope="col">Telephone</th> -->
+                                                            <th scope="col">Role</th>
+                                                            <th *ngIf="!adminP" scope="col">Action</th>
+                                                        </tr>
+                                                        <!-- ----------------------- Fin Tittre tableau en haut---------------------------
+                                                    --------------------------------------------------- -->
+                                                    </thead>
+                                                    <tbody class="text-dark">
+                                                        <!-- ----------------------- Liste Element tableau start---------------------------
+                                                    --------------------------------------------------- -->
+                                                        <tr
+                                                            *ngFor="let users of listuser.slice().reverse() |filter:term | paginate: { itemsPerPage: 8, currentPage: p },  let i = index ">
+                                                            <td>
+                                                                <p class="text-body mb-0">{{i+1}}</p>
+                                                            </td>
+                                                            <td>
+                                                                <p class="text-body mb-0"><img src="{{users.profile}}"
+                                                                        alt=""></p>
+
+                                                            <td>
+                                                                <p class="text-body mb-0">{{users.username}}</p>
+                                                            </td>
+                                                            <!-- <td>
+                                                                <p class="text-body mb-0">{{users.prenom}}</p>
+                                                            </td> -->
+                                                            <td>
+                                                                <p class="text-body mb-0">{{users.email}}</p>
+                                                            </td>
+                                                            <!-- <td>
+                                                                <p class="text-body mb-0">{{users.numero}}</p>
+                                                            </td> -->
+                                                            <td >
+                                                                <p class="text-body mb-0" >Utilisateur</p>
+                                                                <!-- *ngIf="users.Listerole[0].name=='ROLE_USER'" -->
+                                                            </td>
+                                                            <td *ngIf="!adminP">
+                                                                <p class="text-body mb-0" (click)="bannir(users.id)"><button
+                                                                        >Banir</button>
+                                                                </p>
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                        <!-- ----------------------- Fin Element liste tableau---------------------------
+                                                    ----------------------------------------------------------------------------- -->
+
+
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <pagination-controls style="font-size: .9em;" (pageChange)="p =$event"
+                                    nextLabel="Suivant" previousLabel="Précedent"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <app-footer></app-footer> -->
+        </main>
+    </div>
+</div>

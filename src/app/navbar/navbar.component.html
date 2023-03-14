@@ -1,0 +1,163 @@
+<div class="navbar-nav align-items-center ms-auto">
+  <!-- <div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+      <i class="fa fa-envelope me-lg-2"></i>
+      <span class="d-none d-lg-inline-flex">Message</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+      <a href="#" class="dropdown-item">
+        <div class="d-flex align-items-center">
+          <img class="rounded-circle" src="{{currentUser.profile}}" alt="" style="width: 40px; height: 40px;">
+          <div class="ms-2">
+            <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+            <small>15 minutes ago</small>
+          </div>
+        </div>
+      </a>
+      <hr class="dropdown-divider">
+      <a href="#" class="dropdown-item">
+        <div class="d-flex align-items-center">
+          <img class="rounded-circle" src="../../assets/logo8.png" alt="" style="width: 40px; height: 40px;">
+          <div class="ms-2">
+            <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+            <small>15 minutes ago</small>
+          </div>
+        </div>
+      </a>
+      <hr class="dropdown-divider">
+      <a href="#" class="dropdown-item">
+        <div class="d-flex align-items-center">
+          <img class="rounded-circle" src="../../assets/logo8.png" alt="" style="width: 40px; height: 40px;">
+          <div class="ms-2">
+            <h6 class="fw-normal mb-0">Jhon send you a message</h6>
+            <small>15 minutes ago</small>
+          </div>
+        </div>
+      </a>
+      <hr class="dropdown-divider">
+      <a href="#" class="dropdown-item text-center">See all message</a>
+    </div>
+  </div> -->
+  <div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+      <i class="fa fa-bell me-lg-2" style="font-size: 1.5em;"></i>
+      <span class="badge rounded-pill badge-notification bg-danger "
+        style="margin-top: -10%; margin-left: -18%; position: absolute;">{{notif?.length ||0}}</span>
+      <span class="d-none d-lg-inline-flex">Solution</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+      <div class="" *ngFor="let not of notif">
+        <a href="#" [routerLink]="['/solution',not.challenge.id]" class="dropdown-item">
+          <h6 *ngIf="not.team.nom" class="fw-normal mb-0">{{not.team.nom}}</h6>
+          <h6 *ngIf="!not.team.nom">{{not.utilisateur.nom}}</h6>
+          <small>{{not.challenge.titre}}</small>
+        </a>
+        <hr class="dropdown-divider">
+      </div>
+
+    </div>
+  </div>
+  <div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+      <img class="rounded-circle me-lg-2" src="{{currentUser.profile}}" alt="" style="width: 40px; height: 40px;">
+      <span class="d-none d-lg-inline-flex">{{currentUser.nom}}</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+      <a href="#" class="dropdown-item" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop2">Mon profile</a>
+      <a (click)="logout()" class="dropdown-item">Déconnexion</a>
+    </div>
+  </div>
+  <div class="modal fade" id="staticBackdrop2" tabindex="100" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+    <div class="modal-dialog d-flex justify-content-center">
+      <div class="modal-content w-100">
+        <div class="modal-header">
+          <button type="button"></button>
+        </div>
+        <div class="form-box">
+          <div class="form">
+            <div>
+              <h1 style="margin-left: 100%; margin-top: -8%; font-size: 1.8em; color: white; cursor: pointer;"
+                data-mdb-dismiss="modal" aria-label="Close">x</h1>
+            </div>
+            <input id="slider" class="customSlider" type="checkbox">
+            <label for="slider"></label>
+
+            <div class="wrapper">
+              <div class="profile" [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(\'' +currentUser.profile + '\')',
+              'background-repeat': 'no-repeat',
+              'background-size': 'cover','object-fit': 'fill','border-radius':' 30px' }">
+                <img src="{{currentUser.profile}}" class="thumbnail">
+                <div class="check"><i class="fas fa-check"></i></div>
+                <h3 class="name">{{currentUser.username}}</h3>
+                <p class="title" style="font-size: 1.2em;">{{currentUser.nom}} {{currentUser.prenom}}</p>
+                <p class="title" style="font-size: 1.2em;">{{currentUser.email}}</p>
+
+                <button type="button" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop166"
+                  class="btn">Modifier</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="staticBackdrop166" tabindex="100" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+    <div class="modal-dialog d-flex justify-content-center">
+      <div class="modal-content w-100">
+        <div class="form-box1">
+          <div class="form1">
+            <div>
+              <h1 style="margin-left: 100%; margin-top: -8%; font-size: 1.8em; color: white; cursor: pointer;"
+                data-mdb-dismiss="modal" aria-label="Close">x</h1>
+            </div>
+            <h2>Modifier ton profile</h2>
+            <form *ngIf="!InscriptionReussi" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+              <div class="" style="display: flex;">
+                <div class="input-box">
+                  <input type="text" [(ngModel)]="currentUser.nom" name="nom">
+                  <span>Nom</span>
+                  <i></i>
+                </div>&nbsp;&nbsp;&nbsp;
+                <div class="input-box">
+                  <input type="text" [(ngModel)]="currentUser.prenom" name="prenom">
+                  <span>Prenom</span>
+                  <i></i>
+                </div>&nbsp;&nbsp;&nbsp;
+              </div>
+              <div class="" style="display: flex;">
+                <div class="input-box">
+                  <input type="text" [(ngModel)]="currentUser.username" name="username">
+                  <span>Pseudo</span>
+                  <i></i>
+                </div>&nbsp;&nbsp;&nbsp;
+                <div class="input-box">
+                  <input type="email" [(ngModel)]="currentUser.email" name="email">
+                  <span>Email</span>
+                  <i></i>
+                </div>&nbsp;&nbsp;&nbsp;
+              </div>
+              <div class="" style="display: flex;">
+                <div class="input-box">
+                  <input type="file" accept="image/*" [(ngModel)]="currentUser.profile" name="profile"
+                    (change)="onFileChangePhoto($event)">
+                  <span>Photo</span>
+                  <i></i>
+                </div>&nbsp;&nbsp;&nbsp;
+                <div class="input-box">
+                  <input type="text" [(ngModel)]="currentUser.numero" name="tel">
+                  <span>Numéro</span>
+                  <i></i>
+                </div>&nbsp;&nbsp;&nbsp;
+
+              </div>
+
+              <input type="submit" class="btn" style="margin-top: 10%; width: 100%;" value="Modifier" class="btn">
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

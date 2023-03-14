@@ -1,0 +1,223 @@
+<div class="container-fluid" style="overflow: hidden;">
+  <div class="row flex-nowrap">
+    <div id="sidebar" class="col-auto sidebar  collapse collapse-horizontal show" *ngIf="menuBureau"
+      style="height: 100vh;">
+      <app-menu></app-menu>
+      <!-- </div> -->
+    </div>
+    <main class="col " style=" height: 100vh ; overflow: scroll; overflow-x: hidden;">
+      <nav class=" bg-danger  navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+        <h1 style="width: 20px;"></h1>
+        <a href="#" class="sidebar-toggler flex-shrink-0" data-bs-toggle="collapse" data-bs-target="#sidebar"
+          aria-expanded="false" (click)="afficheMenuMobile()" aria-controls="collapseWidthExample">
+          <i class="fa fa-bars"></i>
+        </a>
+        <div class="d-none d-md-flex ms-4">
+          <input type="text" [(ngModel)]="term"
+            class="form-control border-0 border-2 border-start border-end border-alert" type="search"
+            placeholder="rechercher">
+        </div>
+        <div class="d-flex justify-content-end  w-100">
+          <app-navbar></app-navbar>
+        </div>
+      </nav>
+
+      <div class="container-fluid pt-4 px-4">
+        <div class="row g-4 py-3">
+          <div class="col-sm-12  col-xl-12">
+            <div class="bg-light text-center rounded" style="overflow-x: auto; " >
+              <div class="h-100 bg-light justify-content-end rounded p-5">
+                <div class="d-flex align-items-center  mb-2" style="text-align: center;">
+                  <h4 class="mb-0" style="margin-left: auto; margin-right: auto;"> Les solutions du challenge
+                  </h4>
+                </div>
+                <div class="row" style="width: 98%; margin-left: auto; margin-right: auto;">
+                  <div class="col-lg-12">
+                    <div class="">
+                      <div class="table-responsive">
+
+                        <table class="table project-list-table table-nowrap align-middle table-borderless">
+                          <thead>
+                            <!-- ----------------------- Tittre tableau en haut---------------------------
+                                  --------------------------------------------------- -->
+                            <tr class=" text-light" style="background-color: #695CFE;">
+
+                              <th scope="col">N°</th>
+                              <th scope="col">Equipe/utilisateur</th>
+                              <th scope="col">Challenge</th>
+                              <th scope="col">Fichier source</th>
+                              <th scope="col">Etat</th>
+                              <th scope="col">Action</th>
+                            </tr>
+                            <!-- ----------------------- Fin Tittre tableau en haut---------------------------
+                                  --------------------------------------------------- -->
+                          </thead>
+                          <tbody class="text-dark">
+                            <!-- ----------------------- Liste Element tableau start---------------------------
+                                  --------------------------------------------------- -->
+                            <tr *ngFor="let solution of solutionAffichage|filter:term | paginate: { itemsPerPage: 10, currentPage: p }, let i = index">
+
+                              <td>
+                                <div class="rounded-circle flex-shrink-0"
+                                style="width: 40px; height: 40px; border: 1px solid #5260FF;">
+                                <p style="margin-top: 1vh !important;">{{i+1}}</p>
+                              </div>
+                              </td>
+                              <td *ngIf="solution.team" style="cursor: pointer;">
+                                <p class="text-body mb-0" (click)="mesteams(solution.team.id)" data-mdb-toggle="modal"   data-mdb-target="#team" >{{solution.team.nom}}</p>
+                              </td>
+                              <td *ngIf="solution.utilisateurs">
+                                <p class="text-body mb-0">{{solution.utilisateurs.nom}}</p>
+                              </td>
+                              <td>
+                                <p class="text-body mb-0">{{solution.challenge.titre}}</p>
+                              </td>
+                              <td>
+                                <p class="text-body mb-0"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{solution.source}}"
+                                  download=""><i class="bi bi-download" style="font-size: 1.5em;"></i></a></p>
+                              </td>
+                              <td *ngIf="solution.etat=='1'">
+                                <p class="text-body mb-0" >Corrigé</p>
+                              </td>
+                              <td *ngIf="solution.etat==!'1'">
+                                <p class="text-body mb-0" > Non corrigé</p>
+                              </td>
+                              <td>
+                                <p class="text-body mb-0"><button data-mdb-toggle="modal"
+                                  (click)=" affichage(solution.id)" style="background-color: #695CFE;"
+                                  data-mdb-target="#critere">Correction</button></p>
+                              </td>
+
+
+                            </tr>
+                            <!-- ----------------------- Fin Element liste tableau---------------------------
+                                  ----------------------------------------------------------------------------- -->
+
+
+                          </tbody>
+                        </table>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="critere" tabindex="100" aria-labelledby="critere" aria-hidden="true">
+                  <div class="modal-dialog d-flex justify-content-center">
+                    <div class="modal-content w-100">
+                      <form
+                        (submit)="onSubmit() "
+                        style="width: 96%; margin-left: auto;margin-right: auto;">
+                        <label>Choisir les points :</label>
+                        <div *ngFor="let cpidc of critereParIdChallenge;">
+                          <div class="input-box" style="margin-bottom: 2%;">
+
+                            <option style="font-weight: 100; margin-bottom: 2%;" selected>{{cpidc.critere}}</option>
+                            <select class="form-select" aria-label="Default select example" name="{{cpidc.critere}}">
+                              <option style="font-weight: 20;" selected>Choisir</option>
+                              <option style="font-weight: bold;" *ngFor="let option of options" [value]="option">
+                                {{option}}</option>
+                            </select>
+                          </div>
+                        </div>
+                        <button style="width: 100%; margin-bottom: 5%;" type="submit">Envoyer</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal fade" id="team" tabindex="100" aria-labelledby="team" aria-hidden="true">
+                  <div class="modal-dialog d-flex justify-content-center">
+                    <div class="modal-content w-100">
+                      <div class="bg-light text-center rounded">
+
+                        <div class="h-100 bg-light rounded p-3">
+                          <div class="d-flex align-items-center justify-content-between mb-2">
+                            <h6 class="mb-0">Les membres de l'équipe</h6>
+
+                          </div>
+                          <div class="d-flex align-items-center border-bottom py-3" *ngFor="let users of mesteam">
+                            <img class="rounded-circle flex-shrink-0" src="{{users.profile}}" alt=""
+                              style="width: 40px; height: 40px;">
+                            <div class="w-100 ms-3">
+                              <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-0">{{users.nom}} {{users.prenom}}</h6>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row" style="width: 98%; margin-left: auto; margin-right: auto;">
+        <div class="col-lg-12">
+          <h3 style="margin-left: 40%; color: #5260FF;font-weight: bold; width: 100%;">Le classements</h3>
+          <div class="">
+            <div class="table-responsive">
+
+              <table class="table project-list-table table-nowrap align-middle table-borderless">
+                <thead>
+                  <!-- ----------------------- Tittre tableau en haut---------------------------
+                        --------------------------------------------------- -->
+                  <tr class=" text-light" style="background-color: #695CFE;">
+
+                    <th scope="col">N°</th>
+                    <th scope="col">Equipe/utilisateur</th>
+                    <th scope="col">Challenge</th>
+                    <th scope="col">Points</th>
+                    <th scope="col">Action</th>
+
+                  </tr>
+                  <!-- ----------------------- Fin Tittre tableau en haut---------------------------
+                        --------------------------------------------------- -->
+                </thead>
+                <tbody class="text-dark">
+                  <!-- ----------------------- Liste Element tableau start---------------------------
+                        --------------------------------------------------- -->
+                  <tr *ngFor="let rang of classements let i = index">
+
+                    <td>
+                      <p class="text-body mb-0">{{i+1}}</p>
+                    </td>
+                    <td *ngIf="rang.team">
+                      <p class="text-body mb-0">{{rang.team.nom}}</p>
+                    </td>
+                    <td *ngIf="rang.utilisateurs">
+                      <p class="text-body mb-0">{{rang.utilisateurs.nom}}</p>
+                    </td>
+
+                    <td>
+                      <p class="text-body mb-0">{{rang.challenge.titre}}</p>
+                    </td>
+                    <td>
+                      <p class="text-body mb-0">{{rang.total}}</p>
+                    </td>
+                    <td>
+                      <p class="text-body mb-0">nbnb</p>
+                    </td>
+
+
+                  </tr>
+                  <!-- ----------------------- Fin Element liste tableau---------------------------
+                        ----------------------------------------------------------------------------- -->
+
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <app-footer></app-footer>
+    </main>
+
+  </div>
+</div>

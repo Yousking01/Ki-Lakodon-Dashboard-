@@ -1,0 +1,184 @@
+<nav class="">
+  <header>
+    <a routerLink="/dashboard" class="navbar-brand">
+      <img src="../../assets/Kilakodon 2.png" alt="" style="width: 50%;
+      display: flex;
+      margin: auto;">
+    </a>
+  </header>
+  <div class="menu-bar">
+    <div class="menu">
+      <li class="nav-link">
+        <a href="#" routerLinkActive="active" routerLink="/dashboard">
+          <i class='bx bxs-home icon'></i>
+          <span class="text nav-text">Dashboard</span>
+        </a>
+
+      </li>
+      <li class="nav-link">
+        <a href="#" routerLinkActive="active" routerLink="/challenge">
+          <i class='bx bxs-trophy icon'></i>
+          <span class="text nav-text">Annonce</span>
+        </a>
+      </li>
+      <li class="nav-link">
+        <a href="#" routerLinkActive="active" routerLink="/utilisateur">
+          <i class='bx bxs-user-circle icon'></i>
+          <span class="text nav-text">Utilisateur</span>
+        </a>
+      </li>
+      <li class="nav-link">
+        <a href="#" routerLinkActive="active" routerLink="/annonceur">
+          <i class='bx bx-megaphone icon' style="color: black;"></i>
+          <span class="text nav-text">Annonceur</span>
+        </a>
+
+      </li>
+      <!-- <li class="nav-link">
+        <a href="#" routerLinkActive="active" routerLink="/forum">
+          <i class='bx bxs-conversation icon'></i>
+          <span class="text nav-text">Forum</span>
+        </a>
+      </li> -->
+      <span class="py-5">
+        <a href="#">
+          <span class="text nav-text"></span>
+        </a>
+      </span>
+    </div>
+    <style>
+
+    </style>
+    <li class="moi" *ngIf="!adminP" class="nav-link" style="margin-top: 10%;   box-shadow: 0px 10px 25px #695CFE;
+    border-radius: 12px; border: 2px solid #695CFE; ">
+      <a href="#" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop5">
+        <i class='bx bx-message-square-add icon' style=" margin-left: -5%;"></i>&nbsp;
+        <span class="text nav-text" style="margin-left: -12% !important; ">Nouveau Admin</span>
+      </a>
+    </li>
+    <div class="bottom-content">
+      <li class="li">
+        <a href="#" (click)="logout()">
+          <i class='bx bx-power-off icon' style="color:white"></i>
+          <span class="text nav-text">Déconnexion</span>
+        </a>
+      </li>
+    </div>
+  </div>
+
+  <div class="modal fade" id="staticBackdrop5" tabindex="100" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+
+
+    <div class="modal-dialog d-flex justify-content-center">
+      <div class="modal-content w-100">
+        <div class="modal-header">
+
+          <button type="button"></button>
+        </div>
+        <div class="form-box">
+          <div class="form">
+            <div>
+              <h1 style="margin-left: 100%; margin-top: -8%; font-size: 1.8em; color: white; cursor: pointer;"
+                data-mdb-dismiss="modal" aria-label="Close">x</h1>
+            </div>
+            <h2>Ajouter un administrateur</h2>
+            <form *ngIf="!InscriptionReussi" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+              <!-- <div class="" style="display: flex;"> -->
+              <!-- <div class="input-box">
+                  <input type="text" name="username" [(ngModel)]="form.username" required maxlength="20" #username="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && username.errors }">
+                  <div class="invalid-feedback" *ngIf="username.errors && f.submitted">
+                    <div *ngIf="username.errors['required']">Le nom est obligatoire!</div>
+                    <div *ngIf="username.errors['maxlength']">
+                      Le nom ne doit pas depasser 20 caracters
+                    </div>
+                  </div>
+                  <span>Nom</span>
+                  <i></i>
+                </div>&nbsp;&nbsp;&nbsp;
+                <div class="input-box">
+                  <input type="text" name="prenom" [(ngModel)]="form.prenom" required maxlength="20" #prenom="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && prenom.errors }">
+                  <div class="invalid-feedback" *ngIf="prenom.errors && f.submitted">
+                    <div *ngIf="prenom.errors['required']">Le nom est obligatoire!</div>
+                    <div *ngIf="prenom.errors['maxlength']">
+                      Le prenom ne dooit pas depasser 20 caracters !!!
+                    </div>
+                  </div>
+                  <span>Prenom</span>
+                  <i></i>
+                </div> -->
+              <!-- </div> -->
+              <div class="" style="display: flex;">
+                <div class="input-box">
+                  <input type="text" name="username" [(ngModel)]="form.username" required maxlength="20"
+                    #username="ngModel" [ngClass]="{ 'is-invalid': f.submitted && username.errors }">
+                  <div class="invalid-feedback" *ngIf="username.errors && f.submitted">
+                    <div *ngIf="username.errors['required']">Le nom est obligatoire!</div>
+                    <div *ngIf="username.errors['maxlength']">
+                      Le nom d'utilisateur ne doit pas depasser 20 caracters
+                    </div>
+                  </div>
+                  <span>Pseudo</span>
+                  <i></i>
+                </div>&nbsp;&nbsp;&nbsp;
+
+                <div class="input-box" style="width: 100%;">
+                  <input type="email" name="email" [(ngModel)]="form.email" required #email="ngModel"
+                    [ngClass]="{ 'is-invalid': f.submitted && email.errors }">
+                  <div class="invalid-feedback" *ngIf="email.errors && f.submitted">
+                    <div *ngIf="email.errors['required']">Le email est obligatoire!</div>
+                  </div>
+                  <span>Email</span>
+                  <i></i>
+                </div>
+              </div>
+              <div class="" style="display: flex; margin-bottom: 10%;">
+                <div class="input-box">
+                  <input type="password" name="password" [(ngModel)]="form.password" required maxlength="10"
+                    #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }">
+                  <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+                    <div *ngIf="password.errors['required']">Le numero est obligatoire!</div>
+                    <div *ngIf="password.errors['maxlength']">
+                      Le mot de passe ne doit pas depasser 13 caracters
+                    </div>
+                  </div>
+                  <span>Mot de passe</span>
+                  <i></i>
+                </div>&nbsp;&nbsp;&nbsp;
+                <div class="input-box">
+                  <input type="password" name="password" [(ngModel)]="form.password" required maxlength="13"
+                    #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.errors }">
+                  <div class="invalid-feedback" *ngIf="password.errors && f.submitted">
+                    <div *ngIf="password.errors['required']">Le numero est obligatoire!</div>
+                    <div *ngIf="password.errors['maxlength']">
+                      Le Mot de passe ne doit pas depasser 10 caracters
+                    </div>
+                  </div>
+                  <span>Confirme Mot de passe</span>
+                  <i></i>
+                </div>&nbsp;&nbsp;&nbsp;
+              </div>
+              <!-- <input type="hidden" [(ngModel)]="form.password"> -->
+              <div class="" style="display: flex; margin-bottom: 10%;">
+                <div class="liste">
+                  <div class="selection">
+                    <select name="role" [(ngModel)]="role" (ngModelChange)="onRoleSelect($event)">
+                      <!-- <option value="" disabled selected hidden>Type de compte</option> -->
+                      <ng-container *ngFor="let role of Listerole">
+                        <option value="{{role.name}}">{{role.name}}</option>
+                      </ng-container>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <input style="width: 100%;" type="submit" value="Enregistrer" class="btn">
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</nav>

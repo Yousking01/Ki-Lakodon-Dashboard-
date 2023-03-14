@@ -1,0 +1,244 @@
+<div class="container-fluid" style="overflow: hidden;">
+  <div class="row flex-nowrap">
+    <div id="sidebar" class="col-auto sidebar  collapse collapse-horizontal show" *ngIf="menuBureau"
+      style="height: 100vh;">
+      <app-menu></app-menu>
+      <!-- </div> -->
+    </div>
+    <main class="col " style=" height: 100vh ; overflow: scroll; overflow-x: hidden;">
+      <nav class=" bg-danger  navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0"
+        style="margin-left: -4%; width: 107%;">
+        <h1 style="width: 20px;"></h1>
+        <a href="#" class="sidebar-toggler flex-shrink-0" data-bs-toggle="collapse" data-bs-target="#sidebar"
+          aria-expanded="false" (click)="afficheMenuMobile()" aria-controls="collapseWidthExample">
+          <i class="fa fa-bars"></i>
+        </a>
+        <form class="d-none d-md-flex ms-4">
+          <input class="form-control border-0" type="search" placeholder="Search">
+          <i class='bx bx-search icon ' style="font-size:35px"></i>
+        </form>
+        <div class="d-flex justify-content-end  w-100">
+          <app-navbar></app-navbar>
+        </div>
+      </nav>
+
+
+      <div class="container-fluid pt-4 px-4" style="margin-left: -2.5%; width: 105%;">
+        <div class="row g-4 py-3">
+          <div class="col-sm-12 col-xl-4">
+            <div class="card">
+              <div class="row ">
+                <div class=" px-3 py-2">
+                  <div class="card-block px-6">
+                    <h4 class="card-title">Horizontal Card with Carousel - Bootstrap 4 </h4>
+                    <p class="card-text">
+                      The Carousel code can be replaced with an img src, no problem. The added CSS brings shadow to
+                      the
+                      card and some adjustments to the prev/next buttons and the indicators is rounded now. As in
+                      Bootstrap 3
+                    </p>
+                    <p class="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the
+                      carousel div above the col containing the text for left alignment of images</p>
+                    <br>
+                    <h3></h3>
+                    <div class="">
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="comment-box ml-2">
+                            <h4>Ajouter des commentaires</h4>
+                            <div class="comment-area">
+                              <textarea class="form-control" placeholder="Parteager ses idées" rows="4"></textarea>
+                            </div>
+                            <div class="comment-btns mt-2">
+                              <div class="row">
+                                <div class="col-6">
+                                  <div class="pull-left">
+                                    <button class="btn btn-success btn-sm">Annuler</button>
+                                  </div>
+                                </div>
+                                <div class="col-6">
+                                  <div class="pull-right">
+                                    <button class="btn btn-success send btn-sm">Ajouter <i
+                                        class="fa fa-long-arrow-right ml-1"></i></button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-xl-8">
+            <div class="bg-light  rounded">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Recent Comments</h4>
+                      <h6 class="card-subtitle">Latest Comments section by users</h6>
+                    </div>
+
+                    <div class="comment-widgets m-b-20">
+
+                      <div class="d-flex flex-row comment-row">
+                        <div class="p-2"><span class="round"><img src="https://i.imgur.com/uIgDDDd.jpg" alt="user"
+                              width="50"></span></div>
+                        <div class="comment-text w-100">
+                          <h5>Samso Nagaro</h5>
+                          <div class="comment-footer">
+                            <span class="date">April 14, 2019</span>
+
+                          </div>
+                          <p class="m-b-5 m-t-10"> standard dummy text ever since the 1500s, when an unknown
+                            printer took a galley of type and scrambled it</p>
+                          <ul class="list-inline d-sm-flex my-0">
+                            <li class="list-inline-item g-mr-20">
+                              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i>
+                                178
+                              </a>
+                            </li>
+                            <li class="list-inline-item g-mr-20">
+                              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <i class="fa fa-thumbs-down g-pos-rel g-top-1 g-mr-3"></i>
+                                34
+                              </a>
+                            </li>
+                            <li class="list-inline-item ml-auto">
+                              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i>
+                                Reply
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row comment-row ">
+                        <div class="p-2"><span class="round"><img src="https://i.imgur.com/tT8rjKC.jpg" alt="user"
+                              width="50"></span></div>
+                        <div class="comment-text active w-100">
+                          <h5>Jonty Andrews</h5>
+                          <div class="comment-footer">
+                            <span class="date">March 13, 2020</span>
+
+                          </div>
+                          <p class="m-b-5 m-t-10">Contrary to popular belief, Lorem Ipsum is not simply random text. It
+                            has
+                            roots in a piece of c consectetur, from a Lorem Ipsum passage, and going through the
+                            cites</p>
+                          <ul class="list-inline d-sm-flex my-0">
+                            <li class="list-inline-item g-mr-20">
+                              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i>
+                                178
+                              </a>
+                            </li>
+                            <li class="list-inline-item g-mr-20">
+                              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <i class="fa fa-thumbs-down g-pos-rel g-top-1 g-mr-3"></i>
+                                34
+                              </a>
+                            </li>
+                            <li class="list-inline-item ml-auto">
+                              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i>
+                                Reply
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row comment-row">
+                        <div class="p-2"><span class="round"><img src="https://i.imgur.com/cAdLHeY.jpg" alt="user"
+                              width="50"></span></div>
+                        <div class="comment-text w-100">
+                          <h5>Sarah Tim</h5>
+                          <div class="comment-footer">
+                            <span class="date">Jan 20, 2020</span>
+
+                          </div>
+                          <p class="m-b-5 m-t-10">There are many variations of passages of Lorem Ipsum available, but
+                            the
+                            majority have suffered alteration
+                            to be sure</p>
+                          <ul class="list-inline d-sm-flex my-0">
+                            <li class="list-inline-item g-mr-20">
+                              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i>
+                                178
+                              </a>
+                            </li>
+                            <li class="list-inline-item g-mr-20">
+                              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <i class="fa fa-thumbs-down g-pos-rel g-top-1 g-mr-3"></i>
+                                34
+                              </a>
+                            </li>
+                            <li class="list-inline-item ml-auto">
+                              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i>
+                                Reply
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row comment-row">
+                        <div class="p-2"><span class="round"><img src="https://i.imgur.com/uIgDDDd.jpg" alt="user"
+                              width="50"></span></div>
+                        <div class="comment-text w-100">
+                          <h5>Samso Nagaro</h5>
+                          <div class="comment-footer">
+                            <span class="date">March 20, 2020</span>
+
+                          </div>
+                          <p class="m-b-5 m-t-10">Ipsum which looks reasonable. The generated Lorem
+                            Ipsum is therefore always free from repetition, injected humour, or non-characteristic words
+                            etc.</p>
+                          <ul class="list-inline d-sm-flex my-0">
+                            <li class="list-inline-item g-mr-20">
+                              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i>
+                                178
+                              </a>
+                            </li>
+                            <li class="list-inline-item g-mr-20">
+                              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <i class="fa fa-thumbs-down g-pos-rel g-top-1 g-mr-3"></i>
+                                34
+                              </a>
+                            </li>
+                            <li class="list-inline-item ml-auto">
+                              <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i>
+                                Reply
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <app-footer></app-footer>
+    </main>
+
+  </div>
+</div>
